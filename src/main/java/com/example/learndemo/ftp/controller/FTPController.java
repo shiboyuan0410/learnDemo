@@ -1,6 +1,6 @@
 package com.example.learndemo.ftp.controller;
 
-import com.example.demo.lx.learn.ftp.utils.FTPTools;
+import com.example.learndemo.ftp.utils.FTPTools;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

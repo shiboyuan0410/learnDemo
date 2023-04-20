@@ -1,7 +1,7 @@
 package com.example.learndemo.mq.controller;
 
-import com.example.demo.lx.learn.mq.service.ConfirmCallbackService;
-import com.example.demo.lx.learn.mq.service.ReturnCallbackService;
+import com.example.learndemo.mq.service.ConfirmCallbackService;
+import com.example.learndemo.mq.service.ReturnCallbackService;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;

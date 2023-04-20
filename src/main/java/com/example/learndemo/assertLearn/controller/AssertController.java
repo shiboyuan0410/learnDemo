@@ -1,6 +1,6 @@
 package com.example.learndemo.assertLearn.controller;
 
-import com.example.demo.lx.learn.assertLearn.model.MyAssert;
+import com.example.learndemo.assertLearn.model.MyAssert;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

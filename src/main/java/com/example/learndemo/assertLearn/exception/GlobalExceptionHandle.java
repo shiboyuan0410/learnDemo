@@ -1,6 +1,6 @@
 package com.example.learndemo.assertLearn.exception;
 
-import com.example.demo.lx.learn.assertLearn.model.MyException;
+import com.example.learndemo.assertLearn.model.MyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

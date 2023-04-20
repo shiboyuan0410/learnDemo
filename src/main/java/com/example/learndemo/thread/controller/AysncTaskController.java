@@ -1,7 +1,7 @@
 package com.example.learndemo.thread.controller;
 
-import com.example.demo.lx.learn.thread.service.AysncTaskService;
-import com.example.demo.lx.learn.thread.service.TicketOffice;
+import com.example.learndemo.thread.service.AysncTaskService;
+import com.example.learndemo.thread.service.TicketOffice;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
