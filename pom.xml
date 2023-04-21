@@ -52,6 +52,14 @@
         </dependency>
 
 
+        <!-- 引入mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+
         <!--消息队列模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
