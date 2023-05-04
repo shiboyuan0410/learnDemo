@@ -21,5 +21,4 @@ public class Receiver1 {
         System.out.println("Test1 receiver2:"+msg);
         return "Test2 receiver1:"+msg;
     }
-
 }
