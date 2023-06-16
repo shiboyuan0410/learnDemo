@@ -21,3 +21,5 @@ spring:
     cache: false #关闭缓存
     mode: HTML5 #设置模板类型
     encoding: utf-8  #设置编码
+logging:
+  config: classpath:log4j2.xml
