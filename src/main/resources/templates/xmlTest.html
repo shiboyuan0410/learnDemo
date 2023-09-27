@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>测试 - Layui</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+
+<div class="layui-container">
+    <div class="layui-progress" style="margin: 15px 0 30px;">
+        <div class="layui-progress-bar" lay-percent="100%"></div>
+    </div>
+
+
+    <div class="layui-btn-container">
+        <button class="layui-btn" test-active="test-form" onclick="checkXMLDocObj()">一个按钮</button>
+        <button class="layui-btn layui-btn-normal" id="test2">当前日期</button>
+    </div>
+
+    <blockquote class="layui-elem-quote" style="margin-top: 30px;">
+        <div class="layui-text">
+            <ul>
+                <li>您当前预览的是：<span>Layui-v<span id="version"></span></span></li>
+                <li>Layui 是一套开源免费的 Web UI（界面）组件库。这是一个极其简洁的演示页面</li>
+            </ul>
+        </div>
+    </blockquote>
+</div>
+
+<!-- body 末尾处引入 layui -->
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script>
+
+    var loadXML = function (xmlFile) {
+        var xmlDoc;
+        if (window.ActiveXObject) {
+            xmlDoc = new ActiveXObject('Microsoft.XMLDOM');
+            xmlDoc.async = false;
+            xmlDoc.load(xmlFile);
+
+        }
+        else{
+            var xmlhttp = new window.XMLHttpRequest();
+            xmlhttp.open("GET",xmlFile,false);
+            xmlhttp.send(null);
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                xmlDoc = xmlhttp.responseXML;
+            }
+        }
+        return xmlDoc;
+    };
+    var checkXMLDocObj = function () {
+        var xmlFile = "/product/project.xml"
+        var xmlDoc = loadXML(xmlFile);
+        console.log(xmlDoc);
+
+        var config = xmlDoc.getElementsByTagName("configuration")[0];
+        console.log(config);
+
+        var taglist = xmlDoc.getElementsByTagName("taglist")[0];
+        console.log(taglist);
+        var deviceItem = xmlDoc.createElement("deviceItem");
+        deviceItem.setAttribute("id","8001");
+        deviceItem.setAttribute("name","8001");
+        deviceItem.setAttribute("icon","");
+        deviceItem.setAttribute("class","");
+        deviceItem.setAttribute("pos",",,");
+        deviceItem.setAttribute("more",",");
+        deviceItem.setAttribute("flag","");
+        taglist.appendChild(deviceItem);
+
+        const taglist2 = xmlDoc.getElementsByTagName("taglist")[0];
+        console.log(taglist2);
+
+        if (xmlDoc == null) {
+            alert('您的浏览器不支持xml文件读取,请使用IE5.0以上版本或firefox、chrome');
+        }
+        return xmlDoc;
+    }
+
+    layui.use(function(){
+        var layer = layui.layer;
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var util = layui.util;
+
+    });
+</script>
+</body>
+</html>
