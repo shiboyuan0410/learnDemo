@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 /**
@@ -35,6 +36,37 @@ public class TestSendController {
     private ReturnCallbackService returnCallbackService;
 
 
+    /**
+     * convertSendAndReceive(…)：可以同步消费者。使用此方法，当确认了所有的消费者都接收成功之后，
+     * 才触发另一个convertSendAndReceive(…)，也就是才会接收下一条消息。RPC调用方式。
+     *
+     * convertAndSend(…)：使用此方法，交换机会马上把所有的信息都交给所有的消费者，
+     * 消费者再自行处理，不会因为消费者处理慢而阻塞线程。
+     */
+
+    @RequestMapping("/sendqn")
+    @ResponseBody
+    public String sendqn() throws InterruptedException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Double x = 0.0 ;
+        Double y = 0.0 ;
+        Double z = 0.0 ;
+
+        for (int i =0;i < 100;i++){
+            x = x + 0.5;
+            String date = sdf.format(new Date());
+            //String content="中钢邢机,加工二车间,display,LCIDh5Zko9~9,338f1," + date + "," + x + ",8.97,1.16";
+
+            //LCIDh5Zko9~9,display,78,11,中钢邢机,加工二车间,1,338f1,14.43,8.98,1.16,75,2023-03-02 14:11:32
+
+            String content="LCIDh5Zko9~9,display,78,11,中钢邢机,加工二车间,1,338f1," + x + ",8.98,1.16,75," + date;
+            amqpTemplate.convertAndSend("qn_crane_pos_biz", content);
+
+            System.out.println("发送MQ-qn_crane_pos_biz:" + i );
+            Thread.sleep(1000l);
+        }
+        return "ok!";
+    }
 
     @RequestMapping("/send1")
     @ResponseBody

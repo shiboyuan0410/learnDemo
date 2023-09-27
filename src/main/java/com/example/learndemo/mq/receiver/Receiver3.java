@@ -1,5 +1,8 @@
 package com.example.learndemo.mq.receiver;
 
+import org.springframework.amqp.rabbit.annotation.Exchange;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +22,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class Receiver3 {
 
+    //@RabbitListener(bindings = @QueueBinding(
+    //        value = @Queue(
+    //                value = "testMq_mes_fanout_1",
+    //                durable ="true",
+    //                autoDelete = "true"),
+    //        exchange = @Exchange(
+    //                name = "fanoutExchange",
+    //                type = "fanout",
+    //                declare="false"
+    //        )
+    //))
     @RabbitListener(queues = "testMq_mes_fanout_1")
     public void receiver1(String msg){
         System.out.println("Test3 receiver1:"+msg);
